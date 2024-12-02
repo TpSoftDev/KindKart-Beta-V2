@@ -1,0 +1,62 @@
+Frontend
+1.	Landing Page:
+o	Use React for dynamic rendering of components.
+o	Use the Google Maps API to display markers for food pantries from the database.
+o	Use useEffect to fetch and render food pantry locations when a zip code is entered.
+o	Clicking on a marker will open a pop-up/modal with detailed information fetched from the backend.
+2.	Account Creation:
+o	Create two separate forms:
+	User Form (Name, Email, Phone Number).
+	Food Pantry Form (Name, Email, Description, Contact, and Location—use Google Maps' "Place Autocomplete" or HTML Geolocation API for this).
+o	Use useState to manage form input values.
+3.	Favorites Management:
+o	Display a "Favorites" section for users after logging in.
+o	Use conditional rendering in React to show/hide "Favorites" based on authentication.
+4.	Styling:
+o	Use CSS for custom design or integrate Bootstrap/Tailwind for faster, responsive layouts.
+ 
+Backend
+Node.js + Express Backend:
+1.	APIs for User Management:
+o	POST /user/register: Create a new user.
+o	POST /user/login: Authenticate returning users.
+o	GET /user/favorites: Retrieve a user’s favorite food pantries.
+o	PUT /user/favorites: Add/remove food pantries to/from favorites.
+2.	APIs for Pantry Management:
+o	POST /pantry/register: Add a new food pantry.
+o	GET /pantry/nearby: Fetch food pantries near a given zip code.
+o	GET /pantry/details/:id: Retrieve details for a specific food pantry.
+3.	Middleware:
+o	Use JSON Web Tokens (JWT) for authentication.
+o	Validate requests with middleware for security (e.g., checking user permissions for favorites).
+4.	Database Structure:
+o	Users Collection/Table:
+	User ID
+	Name
+	Email
+	Phone Number
+	Favorites (array of pantry IDs)
+o	Food Pantries Collection/Table:
+	Pantry ID
+	Name
+	Description
+	Location (latitude/longitude)
+	Contact Information
+	Images
+ 
+Database
+•	Use MongoDB for its flexibility with geospatial data (e.g., 2dsphere index for searching nearby locations).
+•	Alternatively, use MySQL with a proper schema for storing food pantry details and geolocation data.
+ 
+Key Technologies/Requirements Used
+1.	Frontend:
+o	React hooks (useState, useEffect) for state management and fetching data.
+o	Google Maps API for location-based features.
+2.	Backend:
+o	Node.js + Express for REST API implementation.
+o	Async/await for handling asynchronous operations like database calls.
+3.	Database:
+o	CRUD operations implemented (Create: new user/pantry; Read: search pantries; Update: favorites; Delete: remove pantry).
+4.	Optional Enhancements:
+o	Add Tailwind CSS for faster styling.
+o	Save images (e.g., food pantry photos) in Cloudinary or an S3 bucket to reduce database storage.

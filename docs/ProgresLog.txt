@@ -1,0 +1,11 @@
+Current Progress
+1. Frontend Setup:
+Landing Page: Users can enter a zip code and navigate to a map page.
+Map Page: Displays a Google Map centered around the first location from the fetched data.
+Map Component: Fetches food pantry locations from the backend and displays them as markers on the map.
+Backend Setup:
+Express Server: Serves a /locations endpoint that returns sample food pantry data.
+CORS Enabled: Allows the frontend to make requests to the backend without CORS issues.
+3. Testing:
+Verified that the frontend can successfully fetch data from the backend.
+Used Postman to test the /locations endpoint.

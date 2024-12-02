@@ -1,0 +1,10 @@
+Process Overview
+User Entry:
+Users enter pantry details, including an address, in the registration form.
+2. Backend Processing:
+The backend uses a geocoding service to convert the address into latitude and longitude.
+The pantry details, including the geocoded coordinates, are saved to the database.
+Fetching Data:
+The frontend fetches pantry data from the backend, including the coordinates.
+4. Displaying on Map:
+The map component uses the coordinates to place markers for each pantry.
