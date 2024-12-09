@@ -105,12 +105,25 @@ app.get("/pantries", async (req, res) => {
   }
 });
 
-// Endpoint to manage user favorites
-app.put("/user/favorites", async (req, res) => {
-  const { userId, pantryId, action } = req.body;
+// Authentication
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  const token = authHeader && authHeader.split(" ")[1]; // Get the token
+
+  if (!token) return res.status(403).json({ error: "No token provided" });
+
+  jwt.verify(token, "secret_key", (err, user) => {
+    if (err) return res.status(403).json({ error: "Invalid token" });
+    req.user = user;
+    next();
+  });
+};
+
+app.put("/user/favorites", authenticateToken, async (req, res) => {
+  const { pantryId, action } = req.body;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: "User not found" });
 
     if (action === "add") {
@@ -123,6 +136,27 @@ app.put("/user/favorites", async (req, res) => {
 
     await user.save();
     res.json({ favorites: user.favorites });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// User Login Endpoint
+app.post("/user/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    if (user.password !== password) {
+      return res.status(401).json({ error: "Invalid credentials" });
+    }
+
+    // Generate the token
+    const token = jwt.sign({ id: user._id }, "secret_key", { expiresIn: "1h" });
+
+    res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

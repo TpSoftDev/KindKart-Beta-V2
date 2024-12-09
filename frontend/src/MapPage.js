@@ -1,33 +1,32 @@
-// frontend/src/MapPage.js
-// IMPORTANT pantry._id is used but it is determined by the server get.. so whatever it is getting from there should be the var name
 import React, { useEffect, useState } from "react";
 import Map from "./Map";
-import { useAuth } from "./AuthContext"; // Added AuthContext for managing favorites
+import { useAuth } from "./AuthContext";
 
 const MapPage = () => {
-    const { favorites, addToFavorites, removeFromFavorites } = useAuth(); // AuthContext functions
-    const [pantries, setPantries] = useState([]); // State to store pantry data
-    const [showFavorites, setShowFavorites] = useState(false); // State for toggling favorites view
-    const [error, setError] = useState(null); // State for handling errors
+    const { user, favorites, addToFavorites, removeFromFavorites } = useAuth();
+    const [pantries, setPantries] = useState([]);
+    const [showFavorites, setShowFavorites] = useState(false);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch pantry data from the backend
         const fetchPantries = async () => {
             try {
                 const response = await fetch("http://localhost:5001/pantries");
                 if (!response.ok) throw new Error("Failed to fetch pantries");
                 const data = await response.json();
-                setPantries(data); // Update state with fetched data
+                setPantries(data);
             } catch (err) {
-                setError(err.message); // Set error state on failure
+                setError(err.message);
             }
         };
-
-        fetchPantries(); // Call the fetch function
-    }, []); // Empty dependency array to run once on mount
+        fetchPantries();
+    }, []);
 
     const handleFavoriteToggle = (pantryId) => {
-        // Add or remove pantry from favorites
+        if (!user) {
+            alert("You must be logged in to use favorites.");
+            return;
+        }
         if (favorites.includes(pantryId)) {
             removeFromFavorites(pantryId);
         } else {
@@ -35,9 +34,7 @@ const MapPage = () => {
         }
     };
 
-    const displayedPantries = showFavorites
-        ? pantries.filter((pantry) => favorites.includes(pantry._id)) // Filter pantries by favorites
-        : pantries; // Show all pantries if not filtering by favorites
+    const displayedPantries = showFavorites ? pantries.filter((pantry) => favorites.includes(pantry._id)) : pantries;
 
     return (
         <div className="container mt-5">
@@ -46,6 +43,7 @@ const MapPage = () => {
             <button
                 className="btn btn-secondary mb-3"
                 onClick={() => setShowFavorites(!showFavorites)}
+                disabled={!user}
             >
                 {showFavorites ? "Show All Pantries" : "Show Favorites Only"}
             </button>
