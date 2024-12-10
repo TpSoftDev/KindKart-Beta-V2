@@ -4,6 +4,8 @@ const UserRegistration = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState(''); // Add password state
+
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -13,7 +15,7 @@ const UserRegistration = () => {
       const response = await fetch('http://localhost:5001/user/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone }) // Convert data to JSON
+        body: JSON.stringify({ name, email, phone, password }) // Convert data to JSON
       });
       const data = await response.json(); // Parse JSON response
       console.log(data.message); // Log success message
@@ -27,6 +29,7 @@ const UserRegistration = () => {
       <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
       <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone" required />
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
       <button type="submit">Register</button>
     </form>
   );

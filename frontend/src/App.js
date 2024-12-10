@@ -10,18 +10,18 @@ import { AuthProvider } from "./AuthContext";
 
 function App() {
     return (
-        <AuthProvider>
-            <Router>
+        <Router>
+            <AuthProvider>
                 <Navbar />
                 <Routes>
-                    <Route path="/" element={<LandingPage />} />
+                    <Route path="/" element={<MapPage />} />
                     <Route path="/map/:zipCode" element={<MapPage />} />
                     <Route path="/register/user" element={<UserRegistration />} />
                     <Route path="/register/pantry" element={<PantryRegistration />} />
                     <Route path="/login" element={<Login />} />
                 </Routes>
-            </Router>
-        </AuthProvider>
+            </AuthProvider>
+        </Router>
     );
 }
 

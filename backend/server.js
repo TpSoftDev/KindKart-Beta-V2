@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const axios = require("axios");
 const jwt = require("jsonwebtoken");
 
-
 // Import Mongoose models
 const User = require("./models/User");
 const Pantry = require("./models/Pantry");
@@ -43,8 +42,8 @@ app.get("/locations", (req, res) => {
 // Endpoint to register a new user
 app.post("/user/register", async (req, res) => {
   try {
-    const { name, email, phone } = req.body;
-    const user = new User({ name, email, phone });
+    const { name, email, phone, password } = req.body;
+    const user = new User({ name, email, phone, password });
     await user.save();
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
@@ -132,6 +131,8 @@ app.put("/user/favorites", authenticateToken, async (req, res) => {
       }
     } else if (action === "remove") {
       user.favorites = user.favorites.filter((id) => id !== pantryId);
+    } else {
+      return res.status(400).json({ error: "Invalid action" });
     }
 
     await user.save();
@@ -156,9 +157,38 @@ app.post("/user/login", async (req, res) => {
     // Generate the token
     const token = jwt.sign({ id: user._id }, "secret_key", { expiresIn: "1h" });
 
-    res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    res.json({
+      token,
+      user: { id: user._id, name: user.name, email: user.email },
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/user/validate", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    const decoded = jwt.verify(token, "secret_key");
+    const user = await User.findById(decoded.id).populate("favorites");
+    res.json({ id: user._id, name: user.name, email: user.email, favorites: user.favorites });
+  } catch (error) {
+    res.status(401).json({ error: "Invalid token" });
+  }
+});
+
+app.get("/user/favorites", async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    const decoded = jwt.verify(token, "secret_key");
+    const user = await User.findById(decoded.id).populate("favorites");
+    res.json(user.favorites);
+  } catch (error) {
+    res.status(401).json({ error: "Invalid token" });
   }
 });
 
