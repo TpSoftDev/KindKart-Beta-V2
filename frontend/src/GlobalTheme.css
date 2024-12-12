@@ -1,0 +1,137 @@
+/* Global Theme Styles */
+:root {
+  /* Color Palette */
+  --primary-bg: #FEF6E4;
+  --secondary-bg: #FEF3C7;
+  --accent-green: #98D8B7;
+  --accent-yellow: #F8C55C;
+  --text-color: #333;
+
+  /* Typography */
+  --font-primary: 'Space Grotesk', sans-serif;
+}
+
+/* Global Reset and Base Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Container Styles */
+.theme-container {
+  min-height: 100vh;
+  background-color: var(--primary-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Form Styles */
+.theme-form {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.theme-form-title {
+  color: var(--accent-green);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+/* Input Styles */
+.theme-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 2px solid var(--accent-green);
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  transition: all 0.3s ease;
+}
+
+.theme-input:focus {
+  outline: none;
+  border-color: var(--accent-yellow);
+  box-shadow: 0 0 0 3px rgba(248, 197, 92, 0.2);
+}
+
+/* Button Styles */
+.theme-button {
+  width: 100%;
+  padding: 15px;
+  background-color: var(--accent-yellow);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-button:hover {
+  background-color: var(--accent-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Map View Styles */
+.map-container {
+  width: 100%;
+  height: calc(100vh - 100px);
+  background-color: var(--secondary-bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Card Styles */
+.theme-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.theme-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .theme-form {
+    padding: 20px;
+    width: 95%;
+  }
+
+  .theme-form-title {
+    font-size: 2rem;
+  }
+}
+
+/* Utility Classes */
+.text-green {
+  color: var(--accent-green);
+}
+
+.text-yellow {
+  color: var(--accent-yellow);
+}
+
+.bg-light {
+  background-color: var(--secondary-bg);
+} 

@@ -1,4 +1,8 @@
 import React from 'react';
+import './GlobalTheme.css';
+import './StudentInfoView.css';
+import thabangImage from './assets/Thabang.JPEG';
+import andrewImage from './assets/Andrew.jpg';
 
 const StudentInfoView = () => {
   const courseDetails = {
@@ -10,11 +14,13 @@ const StudentInfoView = () => {
   const students = [
     {
       fullName: 'Thabang Pila',
-      email: 'tpila@iastate.edu'
+      email: 'tpila@iastate.edu',
+      image: thabangImage
     },
     {
       fullName: 'Andrew Wilken', 
-      email: 'awilken@iastate.edu'
+      email: 'awilken@iastate.edu',
+      image: andrewImage
     }
   ];
 
@@ -27,36 +33,51 @@ const StudentInfoView = () => {
   ];
 
   return (
-    <div className="student-info-view">
-      <h1>Course Information</h1>
-      
-      <section className="course-details">
-        <h2>Course Details</h2>
-        <p>Course: {courseDetails.name}</p>
-        <p>Semester: {courseDetails.semester}</p>
-        <p>Date: {courseDetails.date}</p>
-      </section>
+    <div className="course-info-container">
+      <div className="course-header">
+        <h1>Course Information</h1>
+        <div className="course-details">
+          <h2>{courseDetails.name}</h2>
+          <p>Semester: {courseDetails.semester}</p>
+          <p>Date: {courseDetails.date}</p>
+        </div>
+      </div>
 
-      <section className="students">
-        <h2>Students</h2>
-        {students.map((student, index) => (
-          <div key={index} className="student-info">
-            <p>Name: {student.fullName}</p>
-            <p>Email: {student.email}</p>
+      <div className="course-sections">
+        <section className="students-section">
+          <h3>Students</h3>
+          <div className="student-grid">
+            {students.map((student, index) => (
+              <div key={index} className="student-card">
+                <div className="student-image-container">
+                  <img 
+                    src={student.image} 
+                    alt={student.fullName} 
+                    className="student-image" 
+                  />
+                </div>
+                <div className="student-info">
+                  <h4>{student.fullName}</h4>
+                  <p>{student.email}</p>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </section>
+        </section>
 
-      <section className="instructors">
-        <h2>Instructors</h2>
-        {instructors.map((instructor, index) => (
-          <div key={index} className="instructor-info">
-            <p>Name: {instructor.fullName}</p>
-            <p>Email: {instructor.email}</p>
-            <p>Title: {instructor.title}</p>
-          </div>
-        ))}
-      </section>
+        <section className="instructors-section">
+          <h3>Instructors</h3>
+          {instructors.map((instructor, index) => (
+            <div key={index} className="instructor-card">
+              <div className="instructor-info">
+                <h4>{instructor.fullName}</h4>
+                <p>Email: {instructor.email}</p>
+                <p>Title: {instructor.title}</p>
+              </div>
+            </div>
+          ))}
+        </section>
+      </div>
     </div>
   );
 };

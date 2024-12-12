@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './GlobalTheme.css';
 
 const PantryRegistration = () => {
   const [name, setName] = useState('');
@@ -25,14 +26,56 @@ const PantryRegistration = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Pantry Name" required />
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-      <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Description" required />
-      <input type="text" value={contact} onChange={(e) => setContact(e.target.value)} placeholder="Contact" required />
-      <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="Location" required />
-      <button type="submit">Register Pantry</button>
-    </form>
+    <div className="theme-container">
+      <form className="theme-form" onSubmit={handleSubmit}>
+        <h2 className="theme-form-title">Register Pantry</h2>
+        <input 
+          type="text" 
+          className="theme-input" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+          placeholder="Pantry Name" 
+          required 
+        />
+        <input 
+          type="email" 
+          className="theme-input" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          placeholder="Email" 
+          required 
+        />
+        <textarea 
+          className="theme-input" 
+          value={description} 
+          onChange={(e) => setDescription(e.target.value)} 
+          placeholder="Description" 
+          required 
+        />
+        <input 
+          type="text" 
+          className="theme-input" 
+          value={contact} 
+          onChange={(e) => setContact(e.target.value)} 
+          placeholder="Contact" 
+          required 
+        />
+        <input 
+          type="text" 
+          className="theme-input" 
+          value={location} 
+          onChange={(e) => setLocation(e.target.value)} 
+          placeholder="Location" 
+          required 
+        />
+        <button 
+          type="submit" 
+          className="theme-button"
+        >
+          Register Pantry
+        </button>
+      </form>
+    </div>
   );
 };
 

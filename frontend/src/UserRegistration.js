@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './GlobalTheme.css';
 
 const UserRegistration = () => {
   const [name, setName] = useState('');
@@ -25,13 +26,46 @@ const UserRegistration = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" required />
-      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
-      <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone" required />
-      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
-      <button type="submit">Register</button>
-    </form>
+    <div className="theme-container">
+      <form className="theme-form" onSubmit={handleSubmit}>
+        <h2 className="theme-form-title">Register User</h2>
+        <input 
+          type="text" 
+          className="theme-input" 
+          placeholder="Full Name" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+          required 
+        />
+        <input 
+          type="email" 
+          className="theme-input" 
+          placeholder="Email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required 
+        />
+        <input 
+          type="tel" 
+          className="theme-input" 
+          placeholder="Phone" 
+          value={phone} 
+          onChange={(e) => setPhone(e.target.value)} 
+          required 
+        />
+        <input 
+          type="password" 
+          className="theme-input" 
+          placeholder="Password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          required 
+        />
+        <button className="theme-button" type="submit">
+          Register
+        </button>
+      </form>
+    </div>
   );
 };
 

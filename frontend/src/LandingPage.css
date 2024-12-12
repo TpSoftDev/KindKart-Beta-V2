@@ -1,0 +1,139 @@
+.landing-container {
+  min-height: 100vh;
+  background-color: #FEF6E4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.content-center {
+  text-align: center;
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 20px;
+  z-index: 2;
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.main-title {
+  color: #98D8B7;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.2;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.sub-title {
+  color: #F8C55C;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.search-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.search-bar {
+  background-color: #F8C55C;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.search-bar input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 18px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.search-bar input::placeholder {
+  color: white;
+  opacity: 0.7;
+}
+
+.search-bar input:focus {
+  outline: none;
+}
+
+.search-button {
+  background-color: #98D8B7;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #7ac4a1;
+}
+
+.impact-stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(248, 197, 92, 0.1);
+  border-radius: 15px;
+  transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: scale(1.05);
+}
+
+.stat-item h3 {
+  color: #98D8B7;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.stat-item p {
+  color: #F8C55C;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+
+  .impact-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+} 

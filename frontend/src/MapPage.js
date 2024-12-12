@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Map from "./Map";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
+import './MapPage.css';
+import './GlobalTheme.css';
 
 const MapPage = () => {
   const { user, favorites, addToFavorites, removeFromFavorites } = useAuth();
@@ -42,35 +44,43 @@ const MapPage = () => {
     : pantries;
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center">Food Pantries</h2>
-      {error && <p className="text-danger text-center">{error}</p>}
-      <button
-        className="btn btn-secondary mb-3"
-        onClick={() => setShowFavorites(!showFavorites)}
-        disabled={!user}
-      >
-        {showFavorites ? "Show All Pantries" : "Show Favorites Only"}
-      </button>
-      <Map pantries={displayedPantries} />
-      <div className="mt-4">
-        <h3>Pantry List</h3>
-        <ul>
+    <div className="map-page-container">
+      <div className="map-section">
+        <div className="map-header">
+          <h2 className="map-title">Food Pantries Near You</h2>
+          {error && <p className="error-message">{error}</p>}
+          <button
+            className="favorites-toggle"
+            onClick={() => setShowFavorites(!showFavorites)}
+            disabled={!user}
+          >
+            {showFavorites ? "Show All Pantries" : "Show Favorites Only"}
+          </button>
+        </div>
+        <Map pantries={displayedPantries} />
+      </div>
+
+      <div className="pantry-list-section">
+        <h3 className="pantry-list-title">Pantry Locations</h3>
+        <div className="pantry-grid">
           {displayedPantries.map((pantry) => {
             const isFavorite = favorites.includes(pantry._id);
             return (
-              <li key={pantry._id}>
-                {pantry.name} - {pantry.location}
+              <div key={pantry._id} className="pantry-card">
+                <div className="pantry-info">
+                  <h4>{pantry.name}</h4>
+                  <p>{pantry.location}</p>
+                </div>
                 <button
                   onClick={() => handleFavoriteToggle(pantry._id)}
-                  className="btn btn-link"
+                  className={`favorite-button ${isFavorite ? 'favorited' : ''}`}
                 >
-                  {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+                  {isFavorite ? "Remove Favorite" : "Add Favorite"}
                 </button>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
     </div>
   );

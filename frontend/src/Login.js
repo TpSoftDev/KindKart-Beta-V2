@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from 'react-router-dom';
+import './GlobalTheme.css';
 
 const Login = () => {
     const { setUser } = useAuth();
@@ -36,31 +37,27 @@ const Login = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h2 className="text-center">Login</h2>
-            {error && <p className="text-danger text-center">{error}</p>}
-            <form onSubmit={handleLogin} className="mt-3">
-                <div className="form-group">
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group mt-3">
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary mt-4 w-100">
+        <div className="theme-container">
+            <form className="theme-form" onSubmit={handleLogin}>
+                <h2 className="theme-form-title">Login</h2>
+                {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+                <input
+                    type="email"
+                    className="theme-input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    required
+                />
+                <input
+                    type="password"
+                    className="theme-input"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    required
+                />
+                <button type="submit" className="theme-button">
                     Login
                 </button>
             </form>

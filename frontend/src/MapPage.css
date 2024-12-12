@@ -1,0 +1,119 @@
+.map-page-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #FEF6E4;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.map-section {
+  margin-bottom: 30px;
+}
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.map-title {
+  color: #98D8B7;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  margin: 0;
+}
+
+.favorites-toggle {
+  background-color: #F8C55C;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.favorites-toggle:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: red;
+  margin: 0;
+}
+
+.pantry-list-section {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pantry-list-title {
+  color: #98D8B7;
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 20px;
+}
+
+.pantry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.pantry-card {
+  background-color: #FEF3C7;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.pantry-card:hover {
+  transform: scale(1.02);
+}
+
+.pantry-info h4 {
+  color: #98D8B7;
+  margin: 0 0 10px 0;
+}
+
+.pantry-info p {
+  margin: 0;
+  color: #666;
+}
+
+.favorite-button {
+  background-color: #F8C55C;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.favorite-button.favorited {
+  background-color: #98D8B7;
+}
+
+@media (max-width: 768px) {
+  .map-page-container {
+    flex-direction: column;
+  }
+
+  .map-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .favorites-toggle {
+    margin-top: 10px;
+  }
+} 

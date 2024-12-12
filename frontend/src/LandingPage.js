@@ -1,6 +1,7 @@
    // frontend/src/LandingPage.js
    import React, { useState } from 'react';
    import { useNavigate } from 'react-router-dom';
+   import './LandingPage.css';
 
    const LandingPage = () => {
      const [zipCode, setZipCode] = useState('');
@@ -8,29 +9,57 @@
 
      const handleSubmit = (e) => {
        e.preventDefault();
-       // Navigate to the map page with the zip code as a parameter
-       navigate(`/map/${zipCode}`);
+       // Validate zip code 
+       const zipCodeRegex = /^\d{5}(-\d{4})?$/;
+       if (zipCodeRegex.test(zipCode)) {
+         navigate(`/map/${zipCode}`);
+       } else {
+         alert('Please enter a valid 5-digit ZIP code');
+       }
      };
 
      return (
-       <div className="container mt-5">
-         <h1 className="text-center">Welcome to KindKart</h1>
-         <p className="text-center">
-           Enter your zip code to find nearby food pantries.
-         </p>
-         <form onSubmit={handleSubmit} className="text-center">
-           <input
-             type="text"
-             value={zipCode}
-             onChange={(e) => setZipCode(e.target.value)}
-             placeholder="Enter Zip Code"
-             className="form-control mb-3"
-             style={{ maxWidth: '300px', margin: '0 auto' }}
-           />
-           <button type="submit" className="btn btn-primary">
-             Search
-           </button>
-         </form>
+       <div className="landing-container">
+         <div className="content-center">
+           <div className="hero-section">
+             <h1 className="main-title">Connecting Communities</h1>
+             <p className="sub-title">Discover Local Food Pantries </p>
+             
+             <form onSubmit={handleSubmit} className="search-container">
+               <div className="search-wrapper">
+                 <div className="search-bar">
+                   <input
+                     type="text"
+                     value={zipCode}
+                     onChange={(e) => setZipCode(e.target.value)}
+                     placeholder="Enter Your Zip Code"
+                     maxLength="5"
+                     pattern="\d{5}"
+                     required
+                   />
+                 </div>
+                 <button type="submit" className="search-button">
+                   Find Pantries
+                 </button>
+               </div>
+             </form>
+             
+             <div className="impact-stats">
+               <div className="stat-item">
+                 <h3>500+</h3>
+                 <p>Pantries Mapped</p>
+               </div>
+               <div className="stat-item">
+                 <h3>50K+</h3>
+                 <p>Meals Supported</p>
+               </div>
+               <div className="stat-item">
+                 <h3>100+</h3>
+                 <p>Communities Served</p>
+               </div>
+             </div>
+           </div>
+         </div>
        </div>
      );
    };
