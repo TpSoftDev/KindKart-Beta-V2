@@ -28,10 +28,7 @@ export const AuthProvider = ({ children }) => {
                 })
                 .catch(() => {
                     localStorage.removeItem("token");
-                    navigate("/login");
                 });
-        } else {
-            navigate("/login");
         }
     }, [navigate]);
 

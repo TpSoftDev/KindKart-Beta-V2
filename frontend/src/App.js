@@ -7,6 +7,7 @@ import PantryRegistration from "./PantryRegistration";
 import Login from "./Login";
 import Navbar from "./NavBar";
 import { AuthProvider } from "./AuthContext";
+import StudentInfoView from "./StudentInfoView"; // Import the new component
 
 function App() {
     return (
@@ -14,11 +15,12 @@ function App() {
             <AuthProvider>
                 <Navbar />
                 <Routes>
-                    <Route path="/" element={<MapPage />} />
+                    <Route path="/" element={<LandingPage />} />
                     <Route path="/map/:zipCode" element={<MapPage />} />
                     <Route path="/register/user" element={<UserRegistration />} />
                     <Route path="/register/pantry" element={<PantryRegistration />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/course-info" element={<StudentInfoView />} />
                 </Routes>
             </AuthProvider>
         </Router>

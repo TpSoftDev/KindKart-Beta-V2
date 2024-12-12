@@ -118,6 +118,8 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
+
+// User Favorites 
 app.put("/user/favorites", authenticateToken, async (req, res) => {
   const { pantryId, action } = req.body;
 
@@ -166,6 +168,7 @@ app.post("/user/login", async (req, res) => {
   }
 });
 
+// Validate User Session Token  
 app.get("/user/validate", async (req, res) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) return res.status(401).json({ error: "Unauthorized" });

@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Map from "./Map";
 import { useAuth } from "./AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const MapPage = () => {
   const { user, favorites, addToFavorites, removeFromFavorites } = useAuth();
   const [pantries, setPantries] = useState([]);
   const [showFavorites, setShowFavorites] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPantries = async () => {
@@ -24,13 +26,14 @@ const MapPage = () => {
 
   const handleFavoriteToggle = (pantryId) => {
     if (!user) {
-      alert("You must be logged in to use favorites.");
-      return;
+        alert("You must be logged in to use favorites. Please log in or register.");
+        navigate("/login");
+        return;
     }
     if (favorites.includes(pantryId)) {
-      removeFromFavorites(pantryId);
+        removeFromFavorites(pantryId);
     } else {
-      addToFavorites(pantryId);
+        addToFavorites(pantryId);
     }
   };
 

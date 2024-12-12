@@ -1,0 +1,26 @@
+.student-info-view {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.student-info-view h1 {
+  text-align: center;
+  color: #333;
+}
+
+.student-info-view section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+}
+
+.student-info, .instructor-info {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+} 
